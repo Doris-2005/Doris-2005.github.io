@@ -1,4 +1,4 @@
-# Lin Tzu-Ting Portfolio
+# Doris Lin Portfolio
 
 A minimal personal portfolio website built with pure HTML, CSS, and JavaScript. It can be deployed directly to GitHub Pages without any build tools.
 
