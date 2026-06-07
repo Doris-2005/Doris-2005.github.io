@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>finalproject.c</title>
+  <link rel="stylesheet" href="tetris.css">
+</head>
+<body>
+  <main class="project-page code-page">
+    <a class="top-link" href="tetris.html">Back to Tetris Project</a>
+
+    <section class="code-viewer" aria-labelledby="source-code-title">
+      <div class="code-toolbar">
+        <h2 id="source-code-title">C Source</h2>
+        <button class="button copy-button" type="button" id="copy-code">Copy Code</button>
+      </div>
+      <pre class="source-block" id="source-panel"><code id="source-code">Loading source code...</code></pre>
+    </section>
+  </main>
+
+  <script>
+    const sourceCode = document.getElementById("source-code");
+    const sourcePanel = document.getElementById("source-panel");
+    const copyButton = document.getElementById("copy-code");
+    let loadedCode = "";
+
+    async function loadSourceCode() {
+      try {
+        const response = await fetch("../downloads/finalproject.c");
+
+        if (!response.ok) {
+          throw new Error("Source file not found.");
+        }
+
+        loadedCode = await response.text();
+        sourceCode.textContent = loadedCode;
+      } catch (error) {
+        loadedCode = "";
+        sourcePanel.classList.add("is-error");
+        sourceCode.textContent = "Unable to load source code. Please view this page through GitHub Pages or a local server.";
+        copyButton.disabled = true;
+      }
+    }
+
+    async function copyCode() {
+      if (!loadedCode) {
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(loadedCode);
+        copyButton.textContent = "Copied";
+        setTimeout(() => {
+          copyButton.textContent = "Copy Code";
+        }, 1500);
+      } catch (error) {
+        copyButton.textContent = "Copy Failed";
+        setTimeout(() => {
+          copyButton.textContent = "Copy Code";
+        }, 1500);
+      }
+    }
+
+    copyButton.addEventListener("click", copyCode);
+    loadSourceCode();
+  </script>
+</body>
+</html>

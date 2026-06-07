@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas Assignment Reminder</title>
+  <link rel="stylesheet" href="canvas-reminder.css">
+</head>
+<body>
+  <main class="project-page">
+    <!-- Top Navigation -->
+    <a class="top-link" href="../index.html">Back to Home</a>
+
+    <!-- Project Header -->
+    <header class="project-hero">
+      <p class="eyebrow">Personal Project</p>
+      <h1>Canvas Assignment Reminder</h1>
+      <p class="project-subtitle">A rule-based automation tool that converts Canvas iCal events into organized Apple Reminders tasks.</p>
+    </header>
+
+    <div class="content-stack">
+      <!-- Overview Section -->
+      <section class="section" aria-labelledby="overview">
+        <h2 id="overview">Overview</h2>
+        <div class="section-content">
+          <p>This tool reads iCal calendar data provided by Canvas, extracts course names, task titles, due dates, and item types, then filters important academic tasks such as assignments, exams, and reports based on keywords and rules. After processing, the system exports the results into a format readable by Apple Shortcuts, allowing the tasks to be imported into Apple Reminders on iPhone or iPad.</p>
+          <p>To avoid duplicate reminders, the tool records previously processed items and only imports new tasks each time it runs.</p>
+        </div>
+      </section>
+
+      <!-- Workflow Section -->
+      <section class="section" aria-labelledby="workflow">
+        <h2 id="workflow">Workflow</h2>
+        <div class="section-content">
+          <figure class="image-frame">
+            <img src="images/canvas-flow.png" alt="Canvas Assignment Reminder workflow" class="project-image">
+          </figure>
+          <ol class="workflow-list">
+            <li>Read Canvas iCal data</li>
+            <li>Parse calendar events</li>
+            <li>Extract course name, task title, and due date</li>
+            <li>Classify tasks as Assignment, Exam, or Report</li>
+            <li>Remove already imported items</li>
+            <li>Export data for Apple Shortcuts</li>
+            <li>Import tasks into Apple Reminders</li>
+            <li>Check and complete tasks in Reminders</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Design Focus Section -->
+      <section class="section" aria-labelledby="design-focus">
+        <h2 id="design-focus">Design Focus</h2>
+        <div class="section-content">
+          <p>The motivation for this tool came from the repeated need to check assignment, exam, and report deadlines on Canvas and manually enter them into a reminder system. To reduce repetitive work and avoid missing deadlines, this project automates the process of extracting important academic tasks and organizing them into Apple Reminders.</p>
+          <p>The tool works as a rule-based agent. It analyzes task names, course information, and keyword rules to determine whether each item belongs to Assignment, Exam, or Report. It also includes a record of processed items to prevent the same task from being imported repeatedly.</p>
+        </div>
+      </section>
+
+      <!-- Key Features Section -->
+      <section class="section" aria-labelledby="key-features">
+        <h2 id="key-features">Key Features</h2>
+        <ul class="feature-list">
+          <li>Reads Canvas iCal calendar data</li>
+          <li>Extracts course names, task titles, and due dates</li>
+          <li>Classifies tasks into Assignment, Exam, and Report</li>
+          <li>Filters out duplicate imported items</li>
+          <li>Exports data for Apple Shortcuts</li>
+          <li>Imports tasks into Apple Reminders</li>
+          <li>Helps manage academic deadlines more clearly</li>
+        </ul>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>

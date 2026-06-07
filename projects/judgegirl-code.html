@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JudgeGirl Code Viewer</title>
+  <link rel="stylesheet" href="judgegirl.css">
+</head>
+<body>
+  <main class="project-page code-page">
+    <!-- Top Navigation -->
+    <a class="top-link" href="judgegirl.html">Back to JudgeGirl</a>
+
+    <!-- Code Viewer -->
+    <section class="code-viewer" aria-labelledby="source-code-title">
+      <div class="code-toolbar">
+        <h1 id="source-code-title">Problem</h1>
+        <button class="button copy-button" type="button" id="copy-code">Copy Code</button>
+      </div>
+      <pre class="source-block" id="source-panel"><code id="source-code">Loading solution file...</code></pre>
+    </section>
+  </main>
+
+  <script>
+    const sourceTitle = document.getElementById("source-code-title");
+    const sourceCode = document.getElementById("source-code");
+    const sourcePanel = document.getElementById("source-panel");
+    const copyButton = document.getElementById("copy-code");
+    const params = new URLSearchParams(window.location.search);
+    const problem = params.get("problem");
+    let loadedCode = "";
+
+    function showError(message) {
+      loadedCode = "";
+      sourcePanel.classList.add("is-error");
+      sourceCode.textContent = message;
+      copyButton.disabled = true;
+    }
+
+    async function loadSolutionCode() {
+      if (!problem || !/^\d+$/.test(problem)) {
+        sourceTitle.textContent = "Problem";
+        showError("No problem selected.");
+        return;
+      }
+
+      sourceTitle.textContent = `Problem ${problem}`;
+      document.title = `Problem ${problem} | JudgeGirl`;
+
+      try {
+        const response = await fetch(`judgegirl/${problem}.c`);
+
+        if (!response.ok) {
+          throw new Error("Solution file not found.");
+        }
+
+        loadedCode = await response.text();
+        sourcePanel.classList.remove("is-error");
+        sourceCode.textContent = loadedCode;
+      } catch (error) {
+        if (window.location.protocol === "file:") {
+          showError("Please view this page through GitHub Pages or a local server.");
+          return;
+        }
+
+        showError("Unable to load this solution file.");
+      }
+    }
+
+    async function copyCode() {
+      if (!loadedCode) {
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(loadedCode);
+        copyButton.textContent = "Copied";
+        setTimeout(() => {
+          copyButton.textContent = "Copy Code";
+        }, 1500);
+      } catch (error) {
+        copyButton.textContent = "Copy Failed";
+        setTimeout(() => {
+          copyButton.textContent = "Copy Code";
+        }, 1500);
+      }
+    }
+
+    copyButton.addEventListener("click", copyCode);
+    loadSolutionCode();
+  </script>
+</body>
+</html>
