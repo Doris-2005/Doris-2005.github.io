@@ -184,10 +184,10 @@ h3 {
 
 .project-description {
   max-width: 620px;
-  margin: 0.8rem 0 0;
+  margin: 0.95rem 0 0;
   color: var(--muted);
-  font-size: 0.96rem;
-  line-height: 1.6;
+  font-size: 0.94rem;
+  line-height: 1.68;
 }
 
 .project-link {
