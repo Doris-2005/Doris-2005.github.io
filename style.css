@@ -109,7 +109,7 @@ p {
 h2 {
   margin-bottom: 0;
   font-family: Georgia, "Times New Roman", "Noto Serif TC", serif;
-  font-size: clamp(2.1rem, 3.8vw, 3.3rem);
+  font-size: clamp(1.8rem, 3.8vw, 3rem);
   font-weight: 400;
   line-height: 1;
 }
